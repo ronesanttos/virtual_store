@@ -1,0 +1,44 @@
+{% extends "global/base.html" %}
+{% block content %}
+
+{% if page_obj %}
+    <div class="product-list">
+        {% for product in page_obj %}
+            <div class="product-card">
+                
+                <!-- Link para a página do produto -->
+                <a href="{% url 'home:product_id' product.id %}" class="product-name">
+                    {{ product.name }}
+                </a>
+
+                <!-- Imagem do produto -->
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+                {% endif %}
+
+                <!-- Preço -->
+                <p class="product-price">R$ {{ product.price|floatformat:2 }}</p>
+
+                <!-- Botão adicionar ao carrinho -->
+                <a href="{% url 'home:add_to_cart' product.id %}" class="btn-cart">🛒 Add ao Carrinho</a>
+
+                <!-- Favorito -->
+                <a href="{% url 'home:toggle_favorite' product.id %}" class="btn-favorite">
+                    {% if product.id in user_favorites %}
+                        ❤️
+                    {% else %}
+                        🤍
+                    {% endif %}
+                </a>
+
+            </div>
+        {% endfor %}
+    </div>
+
+{% else %}
+    <div class="no-products">
+        <h1>Nenhum produto encontrado</h1>
+    </div>
+{% endif %}
+
+{% endblock content %}

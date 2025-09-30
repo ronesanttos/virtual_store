@@ -1,0 +1,32 @@
+<header class="site-header">
+    <div class="logo">
+        <a href="{% url 'home:index' %}">Home</a>
+    </div>
+
+    <nav class="main-nav">
+        <ul>
+            <li><a href="{% url 'home:products' %}">Produtos</a></li>
+            <li class="category-select">
+                <form method="get" action="{% url 'home:index' %}">
+                    <select name="category" onchange="this.form.submit()">
+                        <option value="">Selecione uma categoria</option>
+                        {% for cat in categories %}
+                            <option value="{{ cat.id }}"
+                                {% if selected_category == cat.id|stringformat:"s" %}selected{% endif %}>
+                                {{ cat.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </form>
+            </li>
+            <li><a href="{% url 'home:cart' %}">Carrinho</a></li>
+            <li><a href="{% url 'home:favorite' %}">Favoritos</a></li>
+        </ul>
+    </nav>
+
+    <div class="search-box">
+        <form action="{% url 'home:search' %}" method="get">
+            <input class="search-input" type="search" name="q" value="{{ search_value }}" placeholder="Pesquisar...">
+        </form>
+    </div>
+</header>

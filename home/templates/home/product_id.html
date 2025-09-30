@@ -1,0 +1,26 @@
+{% extends "global/base.html" %}
+
+{% block content %}
+<div class="product-detail-container">
+
+    <!-- Detalhes do produto -->
+    <div class="product-detail-card">
+        <h1 class="product-detail-name">{{ product.name }}</h1>
+        <p class="product-detail-description">{{ product.description }}</p>
+        <p class="product-detail-price"><strong>Preço:</strong> R$ {{ product.price|floatformat:2 }}</p>
+
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-detail-image">
+        {% endif %}
+
+        <a href="{% url 'home:add_to_cart' product.id %}" class="btn-cart-detail">🛒 Adicionar ao Carrinho</a>
+        <a href="{% url 'home:toggle_favorite' product.id %}" class="btn-favorite-detail">
+            {% if product.id in user_favorites %}
+                ❤️
+            {% else %}
+                🤍
+            {% endif %}
+        </a>
+    </div>
+</div>
+{% endblock %}

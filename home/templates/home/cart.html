@@ -1,0 +1,38 @@
+{% extends "global/base.html" %}
+
+{% block content %}
+<div class="cart-container">
+
+    <h1 class="cart-title">Meu Carrinho</h1>
+
+    {% if cart %}
+        <ul class="cart-list">
+            {% for product_id, item in cart.items %}
+                <li class="cart-item">
+
+                    {% if item.image %}
+                        <img src="{{ item.image }}" alt="{{ item.name }}" class="cart-item-image">
+                    {% endif %}
+
+                    <div class="cart-item-info">
+                        <a href="{% url 'home:product_id' product_id %}" class="cart-item-name">{{ item.name }}</a>
+                        <p class="cart-item-price">R$ {{ item.price|floatformat:2 }}</p>
+                        <p class="cart-item-quantity">Quantidade: {{ item.quantity }}</p>
+                    </div>
+
+                    <div class="cart-item-actions">
+                        <a href="{% url 'home:remove_from_cart' product_id=product_id %}" class="btn-remove">Remover</a>
+                        <a href="{% url 'home:add_to_cart' product_id=product_id %}" class="btn-add">Adicionar</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <h2 class="cart-total">Total: R$ {{ total|floatformat:2 }}</h2>
+
+    {% else %}
+        <p class="cart-empty">O carrinho está vazio.</p>
+    {% endif %}
+
+</div>
+{% endblock %}

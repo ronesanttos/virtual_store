@@ -1,0 +1,22 @@
+{% extends "global/base.html" %}
+
+{% block content %}
+<div class="favorites-container">
+    <h1 class="favorites-title">Meus Favoritos</h1>
+
+    {% if favorites %}
+        <ul class="favorites-list">
+            {% for fav in favorites %}
+                <li class="favorite-item">
+                    <a href="{% url 'home:product_id' fav.product.id %}" class="favorite-name">{{ fav.product.name }}</a>  
+                    <span class="favorite-price">R$ {{ fav.product.price|floatformat:2 }}</span>
+                    <a href="{% url 'home:toggle_favorite' fav.product.id %}" class="btn-favorite-item">❤️</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="no-favorites">Você não tem produtos favoritos.</p>
+    {% endif %}
+
+</div>
+{% endblock %}
