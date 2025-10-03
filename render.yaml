@@ -1,22 +1,33 @@
-databases:
-  - name: meu_db
-    plan: free
-    databaseName: meu_projeto
-    user: meu_usuario
-
 services:
+  # Serviço para a aplicação web Django
   - type: web
-    plan: free
-    name: app-agenda
-    runtime: python
+    name: virtual-store
+    env: python
     buildCommand: "./build.sh"
-    startCommand: "python -m gunicorn project.asgi:application -k uvicorn.workers.UvicornWorker"
+    startCommand: "gunicorn virtual_store.wsgi:application"
+    healthCheckPath: "/health/"
+    plan: starter
+    autoDeploy: true
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: meu_db
+          name: virtual-store-db
           property: connectionString
       - key: SECRET_KEY
         generateValue: true
       - key: WEB_CONCURRENCY
-        value: "4"
+        value: 4 # Valor sugerido, ajuste conforme necessidade
+      - key: DJANGO_ALLOWED_HOSTS
+        value: "virtual-store.onrender.com" # Altere para o seu domínio
+      - key: RENDER_EXTERNAL_HOSTNAME
+        value: "virtual-store.onrender.com" # Altere para o seu domínio
+
+  # Serviço para o banco de dados PostgreSQL
+  - type: pserv
+    name: virtual-store-db
+    plan: starter
+    databaseName: virtual_store_db
+    user: virtual_store_user
+    envVars:
+      - key: PG_VERSION
+        value: "14"
