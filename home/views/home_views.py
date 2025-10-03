@@ -3,6 +3,8 @@ from django.core.paginator import Paginator
 from home.models import Product, Category, Favorite
 from django.db.models import Q
 
+from django.http import JsonResponse
+
 def index(req):
     category_id = req.GET.get('category')
     products = Product.objects.order_by('-id')
@@ -20,7 +22,7 @@ def index(req):
         
     categories = Category.objects.all()
     
-    paginator = Paginator(products, 20)
+    paginator = Paginator(products, 10)
     page_number = req.GET.get('page')
     page_obj = paginator.get_page(page_number)
     
@@ -76,13 +78,19 @@ def search(req):
 
 def cart(req):
     cart = req.session.get("cart", {})
-
+    category_id = req.GET.get('category')    
+    if category_id:
+        products = products.filter(category_id=category_id)
+        
+    categories = Category.objects.all()
     total = sum(float(item["price"]) * int(item["quantity"]) for item in cart.values())
     
     context = {
         "cart": cart,
         "total": total,
         "site_title": "Carrinho",
+        'selected_category': category_id,
+        'categories': categories,
     }
     
     return render(req,"home/cart.html", context)
@@ -126,7 +134,19 @@ def remove_from_cart(req,product_id):
     
 def favorites(req):
     favorites = Favorite.objects.filter(user=req.user).select_related("product")
-    return render(req, "home/favorites.html", {"favorites": favorites})
+    
+    category_id = req.GET.get('category')    
+    if category_id:
+        products = products.filter(category_id=category_id)
+        
+    categories = Category.objects.all()
+    
+    context = {
+        'selected_category': category_id,
+        'categories': categories,
+        'favorites': favorites,
+    }
+    return render(req, "home/favorites.html", context)
 
 def toggle_favorite(req,product_id):
     product = get_object_or_404(Product, id=product_id)
@@ -136,12 +156,20 @@ def toggle_favorite(req,product_id):
         # Já era favorito → remove
         favorite.delete()
         
-    return redirect('home:index')
+    return redirect('home:products')
 
 def products(req):
     category_id = req.GET.get('category')
     products = Product.objects.order_by('-id')
     
+     #entender este trecho
+    user_favorites = set()
+    if req.user.is_authenticated:
+        user_favorites = set(
+        Favorite.objects.filter(user=req.user)
+        .values_list('product_id', flat=True)
+    )
+     
     if category_id:
         products = products.filter(category_id=category_id)
         
@@ -154,7 +182,8 @@ def products(req):
         'page_obj':page_obj, 
         'selected_category': category_id,
         'categories': categories,
-        'site_title': 'Produtos'
+        'site_title': 'Produtos',
+        'user_favorites': user_favorites
         ,}
     
     return render( req ,
@@ -174,3 +203,21 @@ def product_id(req,product_id):
         'home/product_id.html',
         context,
     )
+    
+def sobre(req):
+    category_id = req.GET.get('category')
+    if category_id:
+        products = products.filter(category_id=category_id)
+        
+    categories = Category.objects.all()
+    return render( req ,
+        'home/sobre.html',{'categories': categories,})
+
+def contato(req):
+    category_id = req.GET.get('category')
+    if category_id:
+        products = products.filter(category_id=category_id)
+        
+    categories = Category.objects.all()
+    return render( req ,
+        'home/contato.html',{'categories': categories,})

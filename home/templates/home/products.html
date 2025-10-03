@@ -1,42 +1,45 @@
-{% extends "global/base.html" %}
-
-{% block content %}
+{% extends "global/base.html" %} {% block content %}
 <div class="products-container">
+  <h1>Produtos</h1>
 
-    {% if page_obj %}
-        <div class="products-list">
-            {% for product in page_obj %}
-                <div class="product-card">
+  {% if page_obj %}
+  <div class="products-list">
+    {% for product in page_obj %}
+    <div class="product-card">
+      {% if product.image %}
+      <img
+        src="{{ product.image.url }}"
+        alt="{{ product.name }}"
+        class="product-image"
+      />
+      {% endif %}
 
-                    {% if product.image %}
-                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
-                    {% endif %}
+      <div class="product-info">
+        <a href="{% url 'home:product_id' product.id %}" class="product-name">
+          {{ product.name }}
+        </a>
+        <p class="product-description">{{ product.description }}</p>
+        <p class="product-price">R$ {{ product.price|floatformat:2 }}</p>
 
-                    <div class="product-info">
-                        <h2 class="product-name">{{ product.name }}</h2>
-                        <p class="product-description">{{ product.description }}</p>
-                        <p class="product-price">R$ {{ product.price|floatformat:2 }}</p>
-
-                        <div class="product-actions">
-                            <a href="{% url 'home:add_to_cart' product.id %}" class="btn-add-cart">🛒 Adicionar</a>
-                            <a href="{% url 'home:toggle_favorite' product.id %}" class="btn-favorite">
-                                {% if product.id in user_favorites %}
-                                    ❤️
-                                {% else %}
-                                    🤍
-                                {% endif %}
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-            {% endfor %}
+        <div class="product-actions">
+          <a href="{% url 'home:add_to_cart' product.id %}" class="btn-add-cart"
+            >🛒 Adicionar</a
+          >
+          <a
+            href="{% url 'home:toggle_favorite' product.id %}"
+            class="btn-favorite"
+          >
+            {% if product.id in user_favorites %} ❤️ {% else %} 🤍 {% endif %}
+          </a>
         </div>
-    {% else %}
-        <div class="no-products">
-            <h1>Nenhum produto encontrado</h1>
-        </div>
-    {% endif %}
-
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="no-products">
+    <h1>Nenhum produto encontrado</h1>
+  </div>
+  {% endif %}
 </div>
 {% endblock %}

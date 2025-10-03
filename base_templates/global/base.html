@@ -10,8 +10,12 @@
 <body>
     {% include "global/partial/_header.html" %}
     <main class="content">
-
         {% block content %}{% endblock content %}
+        {% include "global/partial/paginator.html" %}
     </main>
+    <footer>
+        <p>Contato</p>
+        <p>Sobre</p>
+    </footer>
 </body>
 </html>

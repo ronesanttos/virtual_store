@@ -6,10 +6,18 @@
     <nav class="main-nav">
         <ul>
             <li><a href="{% url 'home:products' %}">Produtos</a></li>
-            <li class="category-select">
+            <li><a href="{% url 'home:cart' %}">Carrinho</a></li>
+            <li><a href="{% url 'home:favorite' %}">Favoritos</a></li>
+            <li><a href="{% url 'home:contato' %}">Contato</a></li>
+            <li><a href="{% url 'home:sobre' %}">Sobre</a></li>
+        </ul>
+        
+    </nav>
+
+    <div class="category-select">
                 <form method="get" action="{% url 'home:index' %}">
                     <select name="category" onchange="this.form.submit()">
-                        <option value="">Selecione uma categoria</option>
+                        <option value="">Categorias</option>
                         {% for cat in categories %}
                             <option value="{{ cat.id }}"
                                 {% if selected_category == cat.id|stringformat:"s" %}selected{% endif %}>
@@ -18,11 +26,7 @@
                         {% endfor %}
                     </select>
                 </form>
-            </li>
-            <li><a href="{% url 'home:cart' %}">Carrinho</a></li>
-            <li><a href="{% url 'home:favorite' %}">Favoritos</a></li>
-        </ul>
-    </nav>
+    </div>
 
     <div class="search-box">
         <form action="{% url 'home:search' %}" method="get">

@@ -1,0 +1,75 @@
+# Byte‑compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ambiente virtual
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Arquivos de configuração local
+*.env
+.env.local
+.env.*.local
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+static_root/
+media_root/
+
+# Se você usa migrações automáticas
+*.pot
+*.mo
+
+# PyCharm / IDEs
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Logs e dumps
+*.log
+*.sql
+*.sqlite3
+*.sqlite3-journal
+
+# Node / front-end (se usar)
+node_modules/
+npm-debug.log*
+yarn.log
+yarn-error.log
+dist/
+build/
+
+# Arquivos estáticos compilados
+*.css.map
+*.js.map
+
+# Outros
+coverage.*
+htmlcov/
+*.cover
+*.py,cover
+.coverage
+.tox/
+.cache/
+nosetests.xml
+coverage.xml
+junitxml.xml
+
+# Editor backups
+*~
+*.swp
