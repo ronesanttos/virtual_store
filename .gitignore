@@ -1,75 +1,53 @@
-# Byte‑compiled / cache
+# Byte-compiled / cache
 __pycache__/
 *.py[cod]
 *$py.class
 
-# Ambiente virtual
+# Ambiente virtual (caso esteja dentro do projeto)
 env/
 venv/
 .venv/
 ENV/
-env.bak/
-venv.bak/
 
-# Arquivos de configuração local
+# Configurações locais
 *.env
-.env.local
-.env.*.local
+.env.*
 
-# Django stuff:
-*.log
-local_settings.py
+# Banco de dados SQLite
 db.sqlite3
-db.sqlite3-journal
-media/
-staticfiles/
-static_root/
-media_root/
-
-# Se você usa migrações automáticas
-*.pot
-*.mo
-
-# PyCharm / IDEs
-.idea/
-.vscode/
-*.sublime-project
-*.sublime-workspace
-
-# Arquivos do sistema
-.DS_Store
-Thumbs.db
-
-# Logs e dumps
-*.log
-*.sql
 *.sqlite3
 *.sqlite3-journal
 
-# Node / front-end (se usar)
-node_modules/
-npm-debug.log*
-yarn.log
-yarn-error.log
-dist/
-build/
+# Arquivos de log
+*.log
 
-# Arquivos estáticos compilados
-*.css.map
-*.js.map
+# Arquivos e pastas de mídia (uploads)
+media/
 
-# Outros
-coverage.*
-htmlcov/
-*.cover
-*.py,cover
+# Arquivos coletados de static
+staticfiles/
+static_root/
+static/
+
+# Arquivos de migração temporários
+*.pot
+*.mo
+
+# IDEs / Editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Outros arquivos inúteis
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Cobertura de testes / tox / caches
 .coverage
+htmlcov/
 .tox/
 .cache/
-nosetests.xml
-coverage.xml
-junitxml.xml
-
-# Editor backups
-*~
-*.swp
+.pytest_cache/
