@@ -51,3 +51,4 @@ htmlcov/
 .tox/
 .cache/
 .pytest_cache/
+.md

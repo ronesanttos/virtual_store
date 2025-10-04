@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-u*b7k5np$ar1!3^s0xbm$qfvmyggtpzi)fl9)-r+5!9pdreokh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['virtual-store.onrender.com', 'localhost']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -79,10 +79,14 @@ WSGI_APPLICATION = 'project.wsgi.application'
 import dj_database_url
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'),
-        conn_max_age=600
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'virtual-store-db',
+        'USER': 'virtual_store_db_user',
+        'PASSWORD': 'kMNPEHf4Y07ELvG4La4EeGboC8z1uyNl',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
 
 

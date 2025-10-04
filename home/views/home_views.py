@@ -5,6 +5,8 @@ from django.db.models import Q
 
 from django.http import JsonResponse
 
+print(Product.objects.all())
+
 def index(req):
     category_id = req.GET.get('category')
     products = Product.objects.order_by('-id')
