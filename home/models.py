@@ -23,18 +23,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     image = models.ImageField(upload_to='products/', blank=True, null=True)
    
-    def set_image_from_url(self, url):
-        if not url:
-            return
-
-        # Tenta pegar o nome do arquivo da URL
-        parsed_url = urlparse(url)
-        filename = os.path.basename(parsed_url.path)
-
-        response = requests.get(url)
-        if response.status_code == 200:
-            self.image.save(filename, ContentFile(response.content), save=False)
-            
+  
     def __str__(self):
         return self.name
     
