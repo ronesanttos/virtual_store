@@ -16,6 +16,7 @@ import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+DATABASE_URL="postgresql://virtual_store_db_user:kMNPEHf4Y07ELvG4La4EeGboC8z1uyNl@dpg-d3g5l5ffte5s73brh1m0-a.oregon-postgres.render.com/virtual_store_db"
 
 
 # Quick-start development settings - unsuitable for production
@@ -79,7 +80,9 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
+        default=os.environ.get('DATABASE_URL'),
+        conn_max_age=600,
+        ssl_require=True  
     )
 }
 
