@@ -3,14 +3,9 @@ from home import models
 from .models import Product
 from django import forms
 
-class HomeAdmin(admin.ModelAdmin):
-    list_display = 'name', 'price', 'stock', 'category',
-    list_filter = 'category',
-    ordering = 'name',
-    
 @admin.register(models.Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = 'name',
+    list_display = ('name',)
     
 class ProductAdminForm(forms.ModelForm):
     image_url = forms.URLField(required=False, label="Imagem por URL")

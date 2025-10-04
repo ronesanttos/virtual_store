@@ -10,7 +10,7 @@
         <p class="product-detail-price"><strong>Preço:</strong> R$ {{ product.price|floatformat:2 }}</p>
 
         {% if product.image %}
-            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-detail-image">
+            <img src="{% static "product.image" %}" alt="{{ product.name }}" class="product-detail-image">
         {% endif %}
 
         <a href="{% url 'home:add_to_cart' product.id %}" class="btn-cart-detail">🛒 Adicionar ao Carrinho</a>

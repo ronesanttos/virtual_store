@@ -21,14 +21,7 @@ class Product(models.Model):
     stock = models.IntegerField()
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     #image = models.ImageField(upload_to='images/%Y/%m/%d/') 
-    image = models.ImageField(upload_to="images/%Y/%m/%d/", blank=True, null=True)
-
-    def set_image_from_url(self, url):
-        """Baixa a imagem de uma URL e salva no campo image"""
-        response = requests.get(url)
-        if response.status_code == 200:
-            file_name = os.path.basename(url.split("?")[0])  # extrai o nome do arquivo
-            self.image.save(file_name, ContentFile(response.content), save=False)
+    image = models.CharField(max_length=255, blank=True, null=True)
     
     def __str__(self):
         return self.name
@@ -56,4 +49,5 @@ class Cart(models.Model):
         
     def __str__(self):
         return f'{self.user.username} -> {self.product.name}'
+
 

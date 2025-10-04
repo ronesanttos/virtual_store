@@ -8,7 +8,7 @@
     <div class="product-card">
       {% if product.image %}
       <img
-        src="{{ product.image.url }}"
+        src="{% static "product.image" %}"
         alt="{{ product.name }}"
         class="product-image"
       />
