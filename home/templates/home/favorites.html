@@ -9,7 +9,7 @@
       {% if fav.product.image %}
       <img
         class="cart-item-image"
-        src="{% static "fav.product.image" %}"
+        src="{{ fav.product.image }}"
         alt="{{ fav.product.name }}"
       />
       {% endif %}
