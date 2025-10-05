@@ -14,11 +14,24 @@ from pathlib import Path
 import dj_database_url
 import os
 
+# settings.py
+from dotenv import load_dotenv #type:ignore
+
+# Carregue o arquivo .env
+load_dotenv() 
+
+from cloudinary import config as cloudinary_config #type:ignore
+# TESTE TEMPORÁRIO
+print(f"DEBUG CLOUD NAME LIDO: {os.getenv('CLOUDINARY_CLOUD_NAME')}")
+# Carregue os valores (para uso imediato)
+CLOUD_NAME_ENV = os.getenv('CLOUDINARY_CLOUD_NAME')
+API_KEY_ENV = os.getenv('CLOUDINARY_API_KEY')
+API_SECRET_ENV = os.getenv('CLOUDINARY_API_SECRET')
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-DATABASE_URL="postgres://virtual_store_db_user:kMNPEHf4Y07ELvG4La4EeGboC8z1uyNl@d3g5l5ffte5s73brh1m0:5432/virtual_store_db"
-
-
+DATABASE_URL={'DATABASE':  os.getenv('DATABASE_URL'),}
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
@@ -124,6 +137,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (BASE_DIR / 'base_static',)
+MEDIA_URL = '/media/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
@@ -132,16 +146,21 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField' # Sua linha final antes do Cloudinary
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 CLOUDINARY_STORAGE = {
+    # Certifique-se de que estas vêm do ambiente do Render
     'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
     'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
     'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
 }
 
+if not CLOUDINARY_STORAGE['CLOUD_NAME']:
+    # Isto irá imprimir nos logs do Render se a variável não for encontrada.
+    print("ERRO CRÍTICO: Variável CLOUDINARY_CLOUD_NAME não definida!") 
+    
+# Remova este print depois de resolver o problema!
 
 try:
     from project.local_settings import *

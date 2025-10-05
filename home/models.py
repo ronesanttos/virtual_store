@@ -4,6 +4,8 @@ from django.core.files.base import ContentFile
 import os
 import requests
 from urllib.parse import urlparse
+# Importe o CloudinaryStorage diretamente
+from cloudinary_storage.storage import MediaCloudinaryStorage #type:ignore
 
 
 class Category(models.Model):
@@ -22,9 +24,8 @@ class Product(models.Model):
     stock = models.IntegerField()
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     
-    image = models.ImageField(upload_to='products/')
+    image = models.ImageField(upload_to='products/', storage=MediaCloudinaryStorage())
    
-  
     def __str__(self):
         return self.name
     
