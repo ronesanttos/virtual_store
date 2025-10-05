@@ -78,7 +78,10 @@ def search(req):
 
 def cart(req):
     cart = req.session.get("cart", {})
-    category_id = req.GET.get('category')    
+    category_id = req.GET.get('category')   
+    
+    products = Product.objects.all()
+     
     if category_id:
         products = products.filter(category_id=category_id)
         
@@ -134,6 +137,7 @@ def remove_from_cart(req,product_id):
     
 def favorites(req):
     favorites = Favorite.objects.filter(user=req.user).select_related("product")
+    products = Product.objects.all()
     
     category_id = req.GET.get('category')    
     if category_id:
@@ -205,6 +209,8 @@ def product_id(req,product_id):
     )
     
 def sobre(req):
+    products = Product.objects.all()
+    
     category_id = req.GET.get('category')
     if category_id:
         products = products.filter(category_id=category_id)
@@ -214,6 +220,8 @@ def sobre(req):
         'home/sobre.html',{'categories': categories,})
 
 def contato(req):
+    products = Product.objects.all()
+    
     category_id = req.GET.get('category')
     if category_id:
         products = products.filter(category_id=category_id)
