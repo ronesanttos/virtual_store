@@ -3,7 +3,6 @@ from django.core.paginator import Paginator
 from home.models import Product, Category, Favorite
 from django.db.models import Q
 
-from django.http import JsonResponse
 
 
 def index(req):
