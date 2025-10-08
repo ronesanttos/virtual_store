@@ -22,7 +22,7 @@ def index(req):
         
     categories = Category.objects.all()
     
-    paginator = Paginator(products, 10)
+    paginator = Paginator(products, 4)
     page_number = req.GET.get('page')
     page_obj = paginator.get_page(page_number)
     
@@ -179,7 +179,7 @@ def products(req):
         
     categories = Category.objects.all()
 
-    paginator = Paginator(products, 10)
+    paginator = Paginator(products, 12)
     page_number = req.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
@@ -196,8 +196,11 @@ def products(req):
     
 def product_id(req,product_id):
     single_product = get_object_or_404(Product, pk=product_id)
+    categories = Category.objects.all()
+    category_id = req.GET.get('category')
     
     context = {
+        'categories': categories,
         'product': single_product,
         'site_title':f"{single_product.name} - Detalhes"
     }

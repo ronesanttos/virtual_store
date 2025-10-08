@@ -1,6 +1,17 @@
 {% extends "global/base.html" %} {% block content %}
 
 <div class="products-container">
+  <div class="info_cards">
+    <div class="card_local">
+      <p>Insira sua localização</p>
+    </div>
+    <div class="card_paga">
+      <p>Meios de Pagamento</p>
+    </div>
+    <div class="card_price_baixo">
+      <p>Produtos menos de R$100</p>
+    </div>
+  </div>
   {% if page_obj %}
   <div class="products-list">
     {% for product in page_obj %}

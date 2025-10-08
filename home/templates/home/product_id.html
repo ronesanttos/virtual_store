@@ -13,7 +13,7 @@
             <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-detail-image">
         {% endif %}
 
-        <a href="{% url 'home:add_to_cart' product.id %}" class="btn-cart-detail">🛒 Adicionar ao Carrinho</a>
+        <a href="{% url 'home:add_to_cart' product.id %}" class="btn-cart-detail">🛒 Adicionar</a>
         <a href="{% url 'home:toggle_favorite' product.id %}" class="btn-favorite-detail">
             {% if product.id in user_favorites %}
                 ❤️
