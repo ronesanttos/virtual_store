@@ -1,29 +1,6 @@
 {% extends "global/base.html" %} {% block content %}
-<div class="info_cards">
-  <ul>
-    <li>
-      <a href="{% url 'home:location' %}">
-        <strong>Insira sua localização</strong>
-        <p>Confira os custos e prazos de entrega.</p>
-        <span>Informar localização</span>
-      </a>
-    </li>
-    <li>
-      <a href="{% url 'home:payment' %}">
-        <strong>Meios de pagamento</strong>
-        <p>Pague suas compras com rapidez e segurança.</p>
-        <span>Mostrar meios</span>
-      </a>
-    </li>
-    <li>
-      <a href="{% url 'home:cheap_product' %}">
-        <strong>Menos de R$100</strong>
-        <p>Confira produtos com preços baixos.</p>
-        <span>Mostrar produtos</span>
-      </a>
-    </li>
-  </ul>
-</div>
+  <h1 class="cheap_title">Produtos menos de R$100</h1>
+
 <div class="products-container">
   {% if page_obj %}
   <div class="products-list">
@@ -31,7 +8,7 @@
     <div class="product-card">
       {% if product.image %}
       <img
-        src="{{ product.image.url }}"
+        src="{{product.image.url}}"
         alt="{{ product.name }}"
         class="product-image"
       />
@@ -59,11 +36,10 @@
     </div>
     {% endfor %}
   </div>
-
   {% else %}
   <div class="no-products">
     <h1>Nenhum produto encontrado</h1>
   </div>
   {% endif %}
 </div>
-{% endblock %}
+{% endblock content %}

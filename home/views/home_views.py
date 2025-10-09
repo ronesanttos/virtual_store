@@ -232,3 +232,54 @@ def contato(req):
     categories = Category.objects.all()
     return render( req ,
         'home/contato.html',{'categories': categories,})
+    
+def location(req):
+    products = Product.objects.all()
+    
+    category_id = req.GET.get('category')
+    if category_id:
+        products = products.filter(category_id=category_id)
+        
+    categories = Category.objects.all()
+    return render( req ,
+        'home/forms/location.html',{'categories': categories,})
+    
+def payment(req):
+    products = Product.objects.all()
+    
+    category_id = req.GET.get('category')
+    if category_id:
+        products = products.filter(category_id=category_id)
+        
+    categories = Category.objects.all()
+    return render( req ,
+        'home/forms/payment.html',{'categories': categories,})
+    
+def cheap_product(req):
+    category_id = req.GET.get('category')
+    products = Product.objects.filter(price__lte=100).order_by('-id')
+    
+     #entender este trecho
+    user_favorites = set()
+    if req.user.is_authenticated:
+        user_favorites = set(
+        Favorite.objects.filter(user=req.user)
+        .values_list('product_id', flat=True)
+    )
+     
+    if category_id:
+        products = products.filter(category_id=category_id)
+        
+    categories = Category.objects.all()
+
+    paginator = Paginator(products, 10)
+    page_number = req.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {
+        'page_obj':page_obj, 
+        'selected_category': category_id,
+        'categories': categories,
+        'user_favorites': user_favorites
+        ,}
+    return render( req ,
+        'home/forms/cheap_product.html',context)
