@@ -1,10 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.core.files.base import ContentFile
-import os
-import requests
-from urllib.parse import urlparse
-# Importe o CloudinaryStorage diretamente
 from cloudinary_storage.storage import MediaCloudinaryStorage #type:ignore
 
 

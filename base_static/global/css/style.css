@@ -5,7 +5,6 @@
   box-sizing: border-box;
 }
 
-
 body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
     Arial;
@@ -14,7 +13,7 @@ body {
   line-height: 1.6;
   padding: 0 1rem;
 }
-.cheap_title{
+.cheap_title {
   text-align: center;
   padding: 1rem;
 }
@@ -68,7 +67,6 @@ header.site-header {
   position: relative;
 }
 
-
 .category-select select {
   appearance: none;
   -webkit-appearance: none;
@@ -121,7 +119,6 @@ header.site-header {
   outline: none;
 }
 
-
 /* Conteúdo principal */
 main.content {
   padding: 2rem 0;
@@ -169,25 +166,26 @@ main.content {
   text-decoration: underline;
 }
 
-.location_input label {
-  display: block;
+.location_input form {
+  display: flex;
   font-weight: bold;
   margin-bottom: 8px;
   color: #444;
 }
 
-.location_input input[type="search"] {
+.location_input input {
   width: 100%;
   padding: 10px 12px;
   font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 6px;
   box-sizing: border-box;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .location_input a {
   font-size: 13px;
+  font-weight: bold;
   color: #007bff;
   text-decoration: none;
 }
@@ -196,6 +194,41 @@ main.content {
   text-decoration: underline;
 }
 
+.location_input button {
+  position: relative;
+  top: 1.9rem;
+  left: -3.4rem;
+  width: 50px;
+  height: 30px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.location_input button:hover {
+  background-color: #0056b3;
+}
+
+#loading {
+  margin-top: 15px;
+  color: #ff6600;
+  font-weight: bold;
+  animation: pulse 1s infinite;
+}
+
+/* Animação opcional para o texto de carregamento */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 
 /* Container de produtos */
 .products-container {
@@ -256,7 +289,7 @@ main.content {
 .product-price {
   font-weight: bold;
   font-size: 1.1rem;
-  color:  #e67e22;
+  color: #e67e22;
   margin-bottom: 0.5rem;
 }
 
@@ -339,7 +372,8 @@ footer {
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   text-align: center;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial;
 }
 
 .contact-section h1 {
@@ -436,14 +470,14 @@ footer {
 }
 
 .cart-item-name:hover,
-.favorite-name:hover{
+.favorite-name:hover {
   text-decoration: underline;
 }
 .cart-item-name:hover {
   text-decoration: underline;
 }
 
-.cart-item-price, 
+.cart-item-price,
 .favorite-price {
   color: #e67e22;
   font-weight: bold;
@@ -476,7 +510,6 @@ footer {
 .btn-remove {
   background-color: #ef4444;
   width: 100px;
-
 }
 
 .btn-remove:hover {
@@ -486,7 +519,6 @@ footer {
 .btn-add {
   background-color: #2563eb;
   width: 100px;
-
 }
 
 .btn-add:hover {
@@ -551,7 +583,7 @@ footer {
 }
 
 .favorite-item:hover {
-border-color: #1e40af4f;
+  border-color: #1e40af4f;
 }
 
 .no-favorites {
@@ -566,7 +598,8 @@ border-color: #1e40af4f;
   background-color: #f1f5f9;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial;
   color: #1e293b;
   line-height: 1.6;
 }
@@ -598,25 +631,25 @@ border-color: #1e40af4f;
 /* ==================================== */
 
 .product-detail-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Alinha o conteúdo ao topo */
-    padding: 20px;
-    background-color: #f8f8f8; /* Fundo suave */
-    min-height: 80vh; /* Garante que o container ocupe a maior parte da tela */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Alinha o conteúdo ao topo */
+  padding: 20px;
+  background-color: #f8f8f8; /* Fundo suave */
+  min-height: 80vh; /* Garante que o container ocupe a maior parte da tela */
 }
 
 .product-detail-card {
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    max-width: 900px; /* Largura máxima para desktop */
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centraliza itens na vertical */
-    text-align: center;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  max-width: 900px; /* Largura máxima para desktop */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza itens na vertical */
+  text-align: center;
 }
 
 /* ==================================== */
@@ -624,40 +657,40 @@ border-color: #1e40af4f;
 /* ==================================== */
 
 .product-detail-image {
-    max-width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 25px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  max-width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .product-detail-name {
-    font-size: 2em;
-    color: #333;
-    margin-bottom: 10px;
-    font-weight: 700;
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: 700;
 }
 
 .product-detail-description {
-    font-size: 1em;
-    color: #555;
-    margin-bottom: 20px;
-    line-height: 1.6;
-    max-width: 700px;
+  font-size: 1em;
+  color: #555;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  max-width: 700px;
 }
 
 .product-detail-price {
-    font-size: 1.3em;
-    color: #e67e22; /* Cor de destaque para o preço */
-    margin-bottom: 30px;
-    font-weight: 800;
+  font-size: 1.3em;
+  color: #e67e22; /* Cor de destaque para o preço */
+  margin-bottom: 30px;
+  font-weight: 800;
 }
 
 .product-detail-price strong {
-    font-weight: 400;
-    color: #777;
-    margin-right: 5px;
+  font-weight: 400;
+  color: #777;
+  margin-right: 5px;
 }
 
 /* ==================================== */
@@ -666,41 +699,41 @@ border-color: #1e40af4f;
 
 .btn-cart-detail,
 .btn-favorite-detail {
-    display: inline-block;
-    padding: 12px 25px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin: 10px 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  padding: 12px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin: 10px 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Botão Adicionar ao Carrinho */
 .btn-cart-detail {
-    background-color: #2563eb; 
-    color: #fff;
-    font-size: 1.1em;
+  background-color: #2563eb;
+  color: #fff;
+  font-size: 1.1em;
 }
 
 .btn-cart-detail:hover {
-    background-color: #1d4ed8;
-    transform: translateY(-2px);
+  background-color: #1d4ed8;
+  transform: translateY(-2px);
 }
 
 /* Botão Favorito */
 .btn-favorite-detail {
-    background-color: #eee;
-    color: #333;
-    padding: 10px 15px; /* Menor para ser mais discreto */
-    font-size: 1.4em; /* Tamanho maior para o ícone */
-    border: 1px solid #ddd;
-    line-height: 1; /* Alinhamento vertical do emoji */
+  background-color: #eee;
+  color: #333;
+  padding: 10px 15px; /* Menor para ser mais discreto */
+  font-size: 1.4em; /* Tamanho maior para o ícone */
+  border: 1px solid #ddd;
+  line-height: 1; /* Alinhamento vertical do emoji */
 }
 
 .btn-favorite-detail:hover {
-    background-color: #ddd;
-    transform: scale(1.05);
+  background-color: #ddd;
+  transform: scale(1.05);
 }
 
 /* ==================================== */
@@ -708,27 +741,27 @@ border-color: #1e40af4f;
 /* ==================================== */
 
 @media (max-width: 768px) {
-    .product-detail-card {
-        padding: 20px 15px;
-    }
+  .product-detail-card {
+    padding: 20px 15px;
+  }
 
-    .product-detail-name {
-        font-size: 2em;
-    }
+  .product-detail-name {
+    font-size: 2em;
+  }
 
-    .product-detail-price {
-        font-size: 1em;
-    }
+  .product-detail-price {
+    font-size: 1em;
+  }
 
-    .btn-cart-detail {
-        width: 90%; /* Ocupa quase a largura total no mobile */
-        padding: 15px 10px;
-        margin-bottom: 15px;
-    }
+  .btn-cart-detail {
+    width: 90%; /* Ocupa quase a largura total no mobile */
+    padding: 15px 10px;
+    margin-bottom: 15px;
+  }
 
-    .btn-favorite-detail {
-        margin-bottom: 15px;
-    }
+  .btn-favorite-detail {
+    margin-bottom: 15px;
+  }
 }
 
 .info_cards ul {

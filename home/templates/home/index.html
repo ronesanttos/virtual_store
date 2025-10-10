@@ -1,6 +1,7 @@
 {% extends "global/base.html" %} {% block content %}
 <div class="info_cards">
   <ul>
+    {% if not endereco %}
     <li>
       <a href="{% url 'home:location' %}">
         <strong>Insira sua localização</strong>
@@ -8,6 +9,8 @@
         <span>Informar localização</span>
       </a>
     </li>
+    {% endif %}
+
     <li>
       <a href="{% url 'home:payment' %}">
         <strong>Meios de pagamento</strong>

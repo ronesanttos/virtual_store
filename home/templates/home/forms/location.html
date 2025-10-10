@@ -1,18 +1,35 @@
-{% extends "global/base.html" %}
-
-{% block content %}
+{% extends "global/base.html" %} {% block content %}
 <div class="location">
-    <div class="location_info">
-        <p>
-        <strong>Selecione onde quer receber suas compras</strong>
-        Voçê poderá ver custos e prazos de entregas precisos em tudo que procurar.</p>
+  <div class="location_info">
+    <p>
+      <strong>Selecione onde quer receber suas compras</strong>
+      Voçê poderá ver custos e prazos de entregas precisos em tudo que procurar.
+    </p>
+  </div>
 
-        <span>Voltar</span>
-    </div>
-    <div class="location_input">
-        <label for="cep">CEP</label>
-        <input type="search" value="" name="cep" id="cep">
-        <a href="https://buscacepinter.correios.com.br/app/endereco/index.php?redirectUrl=https%3A%2F%2Fwww.mercadolivre.com.br%2Fnavigation%2Faddresses-hub&method=GET">Não sei meu CEP</a>
-    </div>
+  <div class="location_input">
+    <form method="post" onsubmit="loading()">
+      {% csrf_token %} {{form.as_p}}
+      <button type="submit">Buscar</button>
+    </form>
+
+    <div id="loading" style="display: none">🔄 Carregando endereço...</div>
+
+    {% if endereco %}
+    <h3>Endereço encontrado:</h3>
+    <p>Cidade: {{endereco.cidade}} - {{endereco.uf}}</p>
+    {% endif %}
+    <a
+      href="https://buscacepinter.correios.com.br/app/endereco/index.php?redirectUrl=https%3A%2F%2Fwww.mercadolivre.com.br%2Fnavigation%2Faddresses-hub&method=GET"
+      target="blank"
+      >Não sei meu CEP</a
+    >
+  </div>
+  <script>
+    function loading() {
+      document.getElementById("loading").style.display = "block";
+    }
+  </script>
 </div>
+
 {% endblock content %}

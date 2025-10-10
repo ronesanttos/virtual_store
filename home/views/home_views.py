@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404,redirect
 from django.core.paginator import Paginator
 from home.models import Product, Category, Favorite
+from .forms import EnderecoForm
 from django.db.models import Q
 
 
@@ -26,12 +27,15 @@ def index(req):
     page_number = req.GET.get('page')
     page_obj = paginator.get_page(page_number)
     
+    endereco = req.session.get('endereco', {})
+    
     context = {
         'page_obj':page_obj, 
         'site_title': 'Home',
         'selected_category': category_id,
         'categories': categories,
-        'user_favorites': user_favorites
+        'user_favorites': user_favorites,
+        'endereco':endereco
         ,}
     
     return render( req ,
@@ -234,15 +238,39 @@ def contato(req):
         'home/contato.html',{'categories': categories,})
     
 def location(req):
-    products = Product.objects.all()
+    endereco_session = req.session.get("endereco", {})
+    form = EnderecoForm(req.POST or None)
     
+    if form.is_valid():
+        endereco = {
+            'cep': form.cleaned_data['cep'],
+            'logradouro': form.cleaned_data.get('logradouro'),
+            'bairro': form.cleaned_data.get('bairro'),
+            'cidade': form.cleaned_data.get('cidade'),
+            'uf': form.cleaned_data.get('uf'),
+        }
+        
+        # ✅ Salva o dicionário na sessão
+        req.session['endereco'] = endereco
+        req.session.modified = True
+    
+        endereco_session = endereco
+    
+    products = Product.objects.all()
     category_id = req.GET.get('category')
     if category_id:
         products = products.filter(category_id=category_id)
         
     categories = Category.objects.all()
+    
+    context = {
+        'categories': categories,
+        'form': form,
+        'endereco': endereco_session,
+    }
     return render( req ,
-        'home/forms/location.html',{'categories': categories,})
+        'home/forms/location.html',context)
+    
     
 def payment(req):
     products = Product.objects.all()
