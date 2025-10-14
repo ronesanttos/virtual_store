@@ -12,9 +12,13 @@ def index(req):
     
     #entender este trecho
     user_favorites = set()
-    if req.user.is_authenticated:
-        user_favorites = set(
-        Favorite.objects.filter(user=req.user)
+    if not req.session.session_key:
+        req.session.save()
+    
+    session_key = req.session.session_key
+    
+    user_favorites = set(
+        Favorite.objects.filter(session_key=session_key)
         .values_list('product_id', flat=True)
     )
     
@@ -46,9 +50,13 @@ def search(req):
     search_value = req.GET.get('q','').strip()
     
     user_favorites = set()
-    if req.user.is_authenticated:
-        user_favorites = set(
-        Favorite.objects.filter(user=req.user)
+    if not req.session.session_key:
+        req.session.save()
+    
+    session_key = req.session.session_key
+    
+    user_favorites = set(
+        Favorite.objects.filter(session_key=session_key)
         .values_list('product_id', flat=True)
     )
     
@@ -140,7 +148,12 @@ def remove_from_cart(req,product_id):
     return redirect("home:cart")
     
 def favorites(req):
-    favorites = Favorite.objects.filter(user=req.user).select_related("product")
+    if not req.session.session_key:
+        req.session.create()
+        
+    session_key = req.session.session_key
+    
+    favorites = Favorite.objects.filter(session_key=session_key).select_related("product")
     products = Product.objects.all()
     
     category_id = req.GET.get('category')    
@@ -157,8 +170,13 @@ def favorites(req):
     return render(req, "home/favorites.html", context)
 
 def toggle_favorite(req,product_id):
+    if not req.session.session_key:
+        req.session.create()
+        
+    session_key = req.session.session_key
     product = get_object_or_404(Product, id=product_id)
-    favorite, created = Favorite.objects.get_or_create(user=req.user, product=product)
+    
+    favorite, created = Favorite.objects.get_or_create(session_key=session_key, product=product)
 
     if not created:
         # Já era favorito → remove
@@ -172,9 +190,13 @@ def products(req):
     
      #entender este trecho
     user_favorites = set()
-    if req.user.is_authenticated:
-        user_favorites = set(
-        Favorite.objects.filter(user=req.user)
+    if not req.session.session_key:
+        req.session.save()
+    
+    session_key = req.session.session_key
+    
+    user_favorites = set(
+        Favorite.objects.filter(session_key=session_key)
         .values_list('product_id', flat=True)
     )
      
@@ -201,12 +223,22 @@ def products(req):
 def product_id(req,product_id):
     single_product = get_object_or_404(Product, pk=product_id)
     categories = Category.objects.all()
-    category_id = req.GET.get('category')
+    
+    if not req.session.session_key:
+        req.session.save()
+    
+    session_key = req.session.session_key
+    
+    user_favorites = set(
+        Favorite.objects.filter(session_key=session_key)
+        .values_list('product_id', flat=True)
+    )    
     
     context = {
         'categories': categories,
         'product': single_product,
-        'site_title':f"{single_product.name} - Detalhes"
+        'site_title':f"{single_product.name} - Detalhes",
+        'user_favorites':user_favorites,
     }
     
     return render(
@@ -289,12 +321,15 @@ def cheap_product(req):
     
      #entender este trecho
     user_favorites = set()
-    if req.user.is_authenticated:
-        user_favorites = set(
-        Favorite.objects.filter(user=req.user)
+    if not req.session.session_key:
+        req.session.save()
+    
+    session_key = req.session.session_key
+    
+    user_favorites = set(
+        Favorite.objects.filter(session_key=session_key)
         .values_list('product_id', flat=True)
     )
-     
     if category_id:
         products = products.filter(category_id=category_id)
         

@@ -21,8 +21,6 @@ from dotenv import load_dotenv #type:ignore
 load_dotenv() 
 
 from cloudinary import config as cloudinary_config #type:ignore
-# TESTE TEMPORÁRIO
-print(f"DEBUG CLOUD NAME LIDO: {os.getenv('CLOUDINARY_CLOUD_NAME')}")
 # Carregue os valores (para uso imediato)
 CLOUD_NAME_ENV = os.getenv('CLOUDINARY_CLOUD_NAME')
 API_KEY_ENV = os.getenv('CLOUDINARY_API_KEY')
@@ -155,12 +153,6 @@ CLOUDINARY_STORAGE = {
     'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
     'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
 }
-
-if not CLOUDINARY_STORAGE['CLOUD_NAME']:
-    # Isto irá imprimir nos logs do Render se a variável não for encontrada.
-    print("ERRO CRÍTICO: Variável CLOUDINARY_CLOUD_NAME não definida!") 
-    
-# Remova este print depois de resolver o problema!
 
 try:
     from project.local_settings import *

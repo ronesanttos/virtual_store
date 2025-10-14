@@ -26,15 +26,15 @@ class Product(models.Model):
     
     
 class Favorite(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    session_key  = models.CharField( max_length=50)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     
     class Meta:
-        unique_together = ('user', 'product')
+        unique_together = ('session_key', 'product')
         
     def __str__(self):
-        return f'{self.user.username} -> {self.product.name}'
+        return f'{self.session_key } -> {self.product.name}'
 
    
 class Cart(models.Model):
