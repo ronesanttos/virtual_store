@@ -815,3 +815,87 @@ footer {
   color: #007bff;
   font-weight: bold;
 }
+
+/* Container principal */
+.container-pay {
+  background-color: #fff;
+  padding: 30px;
+  margin: 40px auto;
+  max-width: 800px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Título */
+.container-pay h1 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 25px;
+  border-left: 5px solid #ffe600;
+  padding-left: 10px;
+}
+
+/* Informações gerais */
+.info-pay,
+.info-pix-pay,
+.boletos-pay {
+  margin-bottom: 25px;
+}
+
+.info-pay strong,
+.info-pix-pay strong,
+.boletos-pay strong {
+  display: block;
+  font-size: 18px;
+  color: #111;
+  margin-top: 10px;
+}
+
+/* Lista de cartões */
+.cards-pay ul {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.cards-pay li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #fffbe0;
+  padding: 10px 15px;
+  border: 1px solid #ffe600;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 14px;
+
+}
+
+.cards-pay li img {
+  width: 40px;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+
+/* Texto */
+.container-pay p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 5px 0;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .cards-pay ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cards-pay li {
+    width: 100%;
+  }
+}

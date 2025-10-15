@@ -1,1 +1,46 @@
-<p>Meios de Pagamento</p>
+{% extends "global/base.html" %} {% block content %}
+<div class="container-pay">
+  <h1>Meios de Pagamento</h1>
+  <div class="info-pay">
+    <strong>Cartões de crédito em 12 x sem juros</strong>
+  </div>
+  <div class="cards-pay">
+    <ul>
+      <li>
+        <img
+          src="https://http2.mlstatic.com/storage/logos-api-admin/9cf818e0-723a-11f0-a459-cf21d0937aeb-l.svg"
+          alt="mastercard"
+        />
+        <span>12 parcelas</span>
+      </li>
+      <li>
+        <img
+          src="https://http2.mlstatic.com/storage/logos-api-admin/d589be70-eb86-11e9-b9a8-097ac027487d-l.svg"
+          alt="visa"
+        /><span>12 parcelas</span>
+      </li>
+      <li>
+        <img
+          src="https://http2.mlstatic.com/storage/logos-api-admin/cbb2cea0-8379-11f0-918f-e585b4a3b524-l.svg"
+          alt="elo"
+        /><span>12 parcelas</span>
+      </li>
+    </ul>
+  </div>
+  <div class="info-pix-pay">
+    <strong>Pix</strong>
+    <p>
+      Você pode pagar a qualquer momento com seu código, sem custo adicional e o
+      crédito é na hora.
+    </p>
+    <p>Aprovação imediata.</p>
+  </div>
+  <div class="boletos-pay">
+    <strong>Comprovante bancário</strong>
+    <p>
+      Ao comprar, explicaremos como fazer o pagamento em qualquer agência
+      bancária, caixa eletrônico, Internet Banking ou correspondentes bancários.
+    </p>
+  </div>
+</div>
+{% endblock content %}

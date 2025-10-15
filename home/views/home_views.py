@@ -221,25 +221,29 @@ def products(req):
         context,) 
     
 def product_id(req,product_id):
-    single_product = get_object_or_404(Product, pk=product_id)
-    categories = Category.objects.all()
+    try:
+        single_product = Product.objects.get(pk=product_id)
+        categories = Category.objects.all()
+        
+        if not req.session.session_key:
+            req.session.save()
+        
+        session_key = req.session.session_key
+        
+        user_favorites = set(
+            Favorite.objects.filter(session_key=session_key)
+            .values_list('product_id', flat=True)
+        )    
+        
+        context = {
+            'categories': categories,
+            'product': single_product,
+            'site_title':f"{single_product.name} - Detalhes",
+            'user_favorites':user_favorites,
+        }
     
-    if not req.session.session_key:
-        req.session.save()
-    
-    session_key = req.session.session_key
-    
-    user_favorites = set(
-        Favorite.objects.filter(session_key=session_key)
-        .values_list('product_id', flat=True)
-    )    
-    
-    context = {
-        'categories': categories,
-        'product': single_product,
-        'site_title':f"{single_product.name} - Detalhes",
-        'user_favorites':user_favorites,
-    }
+    except Product.DoesNotExist:
+        return redirect('home:products')
     
     return render(
         req,

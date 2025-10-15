@@ -1,27 +1,49 @@
-{% extends "global/base.html" %} 
-{% block content %}
+{% extends "global/base.html" %} {% block content %}
 <div class="about-section">
   <h1>Sobre o Projeto</h1>
 
   <p>
-    Este site foi desenvolvido utilizando <strong>Django</strong> e <strong>SQLite</strong>, com o objetivo de praticar e consolidar conhecimentos em desenvolvimento web.
+    Este site foi desenvolvido com <strong>Django</strong> e
+    <strong>SQLite</strong>, com o objetivo de praticar e consolidar
+    conhecimentos em desenvolvimento web full-stack.
   </p>
 
   <p>
-    Os dados do carrinho de compras e dos produtos favoritos são armazenados utilizando <strong>session</strong>, o que permite manter as informações mesmo sem login.
+    Ele está atualmente <strong>hospedado na plataforma
+    <a href="https://render.com/" target="_blank">Render</a></strong>, permitindo fácil acesso e testes em ambiente de
+    produção, sem a necessidade de configurar servidores locais.
   </p>
 
   <p>
-    O projeto ainda está em desenvolvimento e pode conter alguns bugs. Por exemplo, ao adicionar um produto aos favoritos, o usuário é redirecionado para a página inicial — comportamento que ainda será ajustado.
+    Para o gerenciamento de imagens, está sendo utilizado o serviço da
+    <strong><a href="https://console.cloudinary.com/app/" target="_blank" >Cloudinary</a></strong>, garantindo maior performance no carregamento e
+    manipulação das mídias.
+  </p>
+  <p>
+    Tanto os dados do <strong>carrinho de compras</strong> quanto dos
+    <strong>produtos favoritos</strong> são armazenados via sessions, o que
+    permite que as informações sejam mantidas mesmo sem a necessidade de login —
+    facilitando a navegação e a experiência do usuário de forma anônima.
   </p>
 
   <p>
-    O <strong>CSS</strong> utilizado é básico, pois a parte visual não é o foco principal deste projeto. No entanto, melhorias são bem-vindas!
+    ⚠️ O projeto ainda está em fase de desenvolvimento e pode apresentar
+    pequenos bugs. Por exemplo: ao adicionar um produto aos favoritos, o usuário
+    é redirecionado para a página inicial — comportamento que será ajustado
+    futuramente.
   </p>
 
   <p>
-    Se você tiver interesse em colaborar com ajustes de estilo ou corrigir alguns problemas, o repositório está disponível no GitHub:
-    <a href="https://github.com/ronesanttos/virtual_store" target="_blank">github.com/ronesanttos/virtual_store</a>
+    A interface utiliza um <strong>CSS básico</strong>, pois o foco principal do projeto é a
+    estrutura lógica e o funcionamento da aplicação. Ainda assim, sugestões de
+    melhorias visuais são muito bem-vindas!
   </p>
-   </div>
+  <p>
+    Se você tiver interesse em colaborar com ajustes de estilo ou corrigir
+    alguns problemas, o repositório está disponível no GitHub:
+    <a href="https://github.com/ronesanttos/virtual_store" target="_blank"
+      >github.com/ronesanttos/virtual_store</a
+    >
+  </p>
+</div>
 {% endblock content %}
