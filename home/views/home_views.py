@@ -76,7 +76,7 @@ def search(req):
     
     context = {
         'page_obj': page_obj,
-        'site_title': 'Search - ',
+        'site_title': f'Search - {search_value}',
         'search_value': search_value,
         'user_favorites': user_favorites,
     }
@@ -164,6 +164,7 @@ def favorites(req):
     
     context = {
         'selected_category': category_id,
+        'site_title': 'Favoritos',
         'categories': categories,
         'favorites': favorites,
     }
@@ -260,7 +261,7 @@ def sobre(req):
         
     categories = Category.objects.all()
     return render( req ,
-        'home/sobre.html',{'categories': categories,})
+        'home/sobre.html',{'categories': categories,'site_title': 'Sobre',})
 
 def contato(req):
     products = Product.objects.all()
@@ -271,7 +272,7 @@ def contato(req):
         
     categories = Category.objects.all()
     return render( req ,
-        'home/contato.html',{'categories': categories,})
+        'home/contato.html',{'categories': categories,'site_title': 'Contato',})
     
 def location(req):
     endereco_session = req.session.get("endereco", {})
@@ -300,6 +301,7 @@ def location(req):
     categories = Category.objects.all()
     
     context = {
+        'site_title': 'Localização',
         'categories': categories,
         'form': form,
         'endereco': endereco_session,
@@ -317,7 +319,7 @@ def payment(req):
         
     categories = Category.objects.all()
     return render( req ,
-        'home/forms/payment.html',{'categories': categories,})
+        'home/forms/payment.html',{'categories': categories,'site_title': 'Meios de pagamento',})
     
 def cheap_product(req):
     category_id = req.GET.get('category')
@@ -344,6 +346,7 @@ def cheap_product(req):
     page_obj = paginator.get_page(page_number)
     context = {
         'page_obj':page_obj, 
+        'site_title': 'Produtos menos de R$100',
         'selected_category': category_id,
         'categories': categories,
         'user_favorites': user_favorites
