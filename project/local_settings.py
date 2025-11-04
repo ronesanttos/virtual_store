@@ -1,4 +1,4 @@
 ''' sub-escreve o settings.py'''
 
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['*']

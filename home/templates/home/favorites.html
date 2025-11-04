@@ -7,11 +7,7 @@
     {% for fav in favorites %}
     <li class="favorite-item">
       {% if fav.product.image %}
-      <img
-        
-        src="{{ fav.product.image.url }}"
-        alt="{{ fav.product.name }}"
-      />
+      <img src="{{ fav.product.image.url }}" alt="{{ fav.product.name }}" />
       {% endif %}
 
       <a href="{% url 'home:product_id' fav.product.id %}" class="favorite-name"

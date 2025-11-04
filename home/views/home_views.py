@@ -308,8 +308,7 @@ def location(req):
     }
     return render( req ,
         'home/forms/location.html',context)
-    
-    
+       
 def payment(req):
     products = Product.objects.all()
     
