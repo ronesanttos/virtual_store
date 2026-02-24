@@ -6,7 +6,12 @@
 }
 
 body {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
     Arial;
   background-color: #f8fafc;
   color: #1e293b;
@@ -23,6 +28,8 @@ a {
 }
 
 header.site-header {
+  background-color: red;
+
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -30,7 +37,6 @@ header.site-header {
   gap: 1rem;
   padding: 1rem 0;
   border-bottom: 1px solid #e2e8f0;
-  background-color: #ffffff;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -60,6 +66,15 @@ header.site-header {
 .main-nav a:hover {
   background-color: #e0f2fe;
   border-radius: 5px;
+}
+
+/*botao mobile*/
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 /* Select de categorias */
@@ -346,22 +361,6 @@ footer {
   font-size: 0.875rem;
 }
 
-/* Responsividade extra */
-@media (max-width: 768px) {
-  .main-nav ul {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  header.site-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .products-list {
-    grid-template-columns: 1fr;
-  }
-}
 .contact-section {
   display: flex;
   flex-direction: column;
@@ -372,7 +371,12 @@ footer {
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   text-align: center;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
     Arial;
 }
 
@@ -598,7 +602,12 @@ footer {
   background-color: #f1f5f9;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
     Arial;
   color: #1e293b;
   line-height: 1.6;
@@ -704,7 +713,9 @@ footer {
   border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
   margin: 10px 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -734,34 +745,6 @@ footer {
 .btn-favorite-detail:hover {
   background-color: #ddd;
   transform: scale(1.05);
-}
-
-/* ==================================== */
-/* RESPONSIVIDADE (MOBILE)    */
-/* ==================================== */
-
-@media (max-width: 768px) {
-  .product-detail-card {
-    padding: 20px 15px;
-  }
-
-  .product-detail-name {
-    font-size: 2em;
-  }
-
-  .product-detail-price {
-    font-size: 1em;
-  }
-
-  .btn-cart-detail {
-    width: 90%; /* Ocupa quase a largura total no mobile */
-    padding: 15px 10px;
-    margin-bottom: 15px;
-  }
-
-  .btn-favorite-detail {
-    margin-bottom: 15px;
-  }
 }
 
 .info_cards ul {
@@ -871,7 +854,6 @@ footer {
   border-radius: 6px;
   font-weight: bold;
   font-size: 14px;
-
 }
 
 .cards-pay li img {
@@ -879,7 +861,6 @@ footer {
   object-fit: contain;
   margin: 0 auto;
 }
-
 
 /* Texto */
 .container-pay p {
@@ -897,5 +878,64 @@ footer {
 
   .cards-pay li {
     width: 100%;
+  }
+}
+/* Responsividade extra */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+  .main-nav {
+    position: fixed;
+    top: 0;
+    right: -250px; /* escondido */
+    width: 250px;
+    height: 100vh;
+    background-color: #ffffff;
+    flex-direction: column;
+    padding: 2rem;
+    gap: 1.5rem;
+    z-index: 999; /* IMPORTANTE */
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+  }
+  .main-nav ul {
+    display: flex;
+    flex-direction: column;
+    padding-left: 2rem;
+    gap: 1.5rem;
+  }
+  .main-nav.active {
+    right: 0;
+  }
+
+  header.site-header {
+    flex-wrap: nowrap;
+  }
+
+  .products-list {
+    grid-template-columns: 1fr;
+  }
+
+  .product-detail-card {
+    padding: 20px 15px;
+  }
+
+  .product-detail-name {
+    font-size: 2em;
+  }
+
+  .product-detail-price {
+    font-size: 1em;
+  }
+
+  .btn-cart-detail {
+    width: 90%; /* Ocupa quase a largura total no mobile */
+    padding: 15px 10px;
+    margin-bottom: 15px;
+  }
+
+  .btn-favorite-detail {
+    margin-bottom: 15px;
   }
 }
