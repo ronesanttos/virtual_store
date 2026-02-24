@@ -28,8 +28,6 @@ a {
 }
 
 header.site-header {
-  background-color: red;
-
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -906,7 +904,7 @@ footer {
     gap: 1.5rem;
   }
   .main-nav.active {
-    right: 0;
+    left: 0;
   }
 
   header.site-header {
