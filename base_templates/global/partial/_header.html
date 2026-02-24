@@ -18,6 +18,7 @@
         
     </nav>
 
+    <div class="inline-mobile">
     <div class="category-select">
                 <form method="get" action="{% url 'home:index' %}">
                     <select name="category" onchange="this.form.submit()">
@@ -36,6 +37,7 @@
         <form action="{% url 'home:search' %}" method="get">
             <input class="search-input" type="search" name="q" value="{{ search_value }}" placeholder="Pesquisar...">
         </form>
+    </div>
     </div>
 </header>
 <script>
