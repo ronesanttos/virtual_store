@@ -44,7 +44,17 @@
   const toggle = document.getElementById("menu-toggle");
   const menu = document.querySelector(".main-nav");
 
-  toggle.addEventListener("click", () => {
+  toggle.addEventListener("click", (e) => {
+    e.stopPropagation();
     menu.classList.toggle("active");
+  });
+
+  document.addEventListener("click", (e) => {
+    const isClickInsideMenu = menu.contains(e.target);
+    const isClickOnButton = toggle.contains(e.target);
+
+    if (!isClickInsideMenu && !isClickOnButton) {
+        menu.classList.remove("active");
+    }
   });
 </script>

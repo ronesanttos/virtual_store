@@ -20,7 +20,7 @@ API_SECRET_ENV = os.getenv('CLOUDINARY_API_SECRET')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY','unsafe-secret-key-for-dev-only')
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
 
 # Application definition
