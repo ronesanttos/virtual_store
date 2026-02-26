@@ -1,5 +1,7 @@
 {% extends "global/base.html" %} {% block content %}
 <div class="location">
+  <a class="btn_exit_location" href="{% url 'home:index' %}">Voltar</a>
+
   <div class="location_info">
     <p>
       <strong>Selecione onde quer receber suas compras</strong>
@@ -18,18 +20,27 @@
     {% if endereco %}
     <h3>Endereço encontrado:</h3>
     <p>Cidade: {{endereco.cidade}} - {{endereco.uf}}</p>
-    {% endif %}
-    <a
-      href="https://buscacepinter.correios.com.br/app/endereco/index.php?redirectUrl=https%3A%2F%2Fwww.mercadolivre.com.br%2Fnavigation%2Faddresses-hub&method=GET"
-      target="blank"
-      >Não sei meu CEP</a
-    >
-  </div>
-  <script>
-    function loading() {
-      document.getElementById("loading").style.display = "block";
-    }
-  </script>
-</div>
 
-{% endblock content %}
+    <h4>Voltando ao menu inicial...</h4>
+
+    <script>
+          setTimeout(function() {
+            window.location.href = "{% url 'home:index' %}";
+          }, 10000)
+    </script>
+        {% endif %}
+        <a
+          href="https://buscacepinter.correios.com.br/app/endereco/index.php?redirectUrl=https%3A%2F%2Fwww.mercadolivre.com.br%2Fnavigation%2Faddresses-hub&method=GET"
+          target="blank"
+          >Não sei meu CEP</a
+        >
+      </div>
+      <script>
+        function loading() {
+          document.getElementById("loading").style.display = "block";
+        }
+    </script>
+  </div>
+
+  {% endblock content %}
+</div>
