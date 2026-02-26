@@ -79,8 +79,7 @@ header.site-header {
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  gap: 1rem;
-
+  gap: 2rem;
 }
 
 /* Select de categorias */
@@ -142,7 +141,7 @@ header.site-header {
 
 /* Conteúdo principal */
 main.content {
-  padding: 1rem 0;
+  padding: 2rem 0;
 }
 
 .location {
@@ -941,15 +940,19 @@ footer {
   }
 
   .product-detail-name {
-    font-size: 2em;
+    font-size: 1.6em;
   }
 
   .product-detail-price {
     font-size: 1em;
   }
 
+  .btn-remove, .btn-add-cart {
+    width: 80px;
+  }
+
   .btn-cart-detail {
-    width: 90%; /* Ocupa quase a largura total no mobile */
+    width: 50%; /* Ocupa quase a largura total no mobile */
     padding: 15px 10px;
     margin-bottom: 15px;
   }
