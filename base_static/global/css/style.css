@@ -942,17 +942,15 @@ footer {
   .product-detail-name {
     font-size: 1.6em;
   }
-
+  .cart-container {
+    padding: 1rem;
+  }
   .product-detail-price {
     font-size: 1em;
   }
 
-  .btn-remove, .btn-add-cart {
-    width: 80px;
-  }
-
   .btn-cart-detail {
-    width: 50%; /* Ocupa quase a largura total no mobile */
+    width: 90%; /* Ocupa quase a largura total no mobile */
     padding: 15px 10px;
     margin-bottom: 15px;
   }
